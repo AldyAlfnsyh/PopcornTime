@@ -6,7 +6,7 @@ use App\Http\Controllers\TvController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MovieTvController::class, 'index']);
-Route::get('/list-movie-tv', [MovieTvController::class, 'list_movie_tv'])->name('list-movie-tv');;
+Route::get('/list-movie-tv', [MovieTvController::class, 'list_movie_tv'])->name('list-movie-tv');
 Route::get('/movie/{id}', [MoviesController::class, 'movie_detail']);
 Route::get('/tv/{id}', [TvController::class, 'tv_detail']);
 Route::get('/tv/{tv_id}/season', [TvController::class, 'tv_list_season']);

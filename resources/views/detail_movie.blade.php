@@ -11,23 +11,20 @@
                     <h1>{{$runtime}} min</h1>
                 </div>
             </div>
-            <div class="flex gap-2">
-                <div class="flex flex-col items-center">
-                    <h1>Vote Average</h1>
-                    <div class="flex gap-2 items-center">
-                        <img class='w-8 h-8' src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1"/>
-                        <div class="flex flex-col">
-                            <span class="text-gray-400 font-bold">{{round($vote_average,1)}}</span>
-                            <span class="text-gray-400">{{$vote_count}}</span>
-                        </div>
+            <div class="flex gap-3">
+                <div class="flex flex-col items-start">
+                    <h1  class="font-bold">Vote Average</h1>
+                    <div class="flex gap-1 items-center h-full">
+                        <img class='w-8 h-8' src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1"/>    
+                        <h1 class="text-gray-400"><span class="text-gray-400 text-2xl font-bold">{{round($vote_average,1)}}/</span>{{$vote_count}}</h1>
                     </div>
                 </div>
                 @if(isset($popularity))
-                <div class="flex flex-col items-center ">
-                    <h1>Popularity</h1>
-                    <div class="flex gap-2 items-center h-full">
+                <div class="flex flex-col items-start ">
+                    <h1 class="font-bold">Popularity</h1>
+                    <div class="flex gap-1 items-center h-full">
                         <img class='w-8 h-8' src="https://img.icons8.com/?size=100&id=85933&format=png&color=4AC82F"/>
-                        <span class="text-gray-400 font-bold">{{$popularity}}</span>
+                        <h1 class="text-gray-400 font-bold text-2xl">{{$popularity}}</h1>
                     </div>
                 </div>
                 @endif
@@ -55,7 +52,7 @@
         <div> --}}
 
         <div class="flex h-120 gap-1 justify-center">
-            @if($type=='episode_detail')
+            @if(isset($type) && $type=='episode_detail')
                 <img class='rounded-xl h-auto w-auto' src='{{$still_path ? asset($img_path.$still_path) : asset("storage/still-image-not-found.jpg")}}'/>
             @else
                 <img class='rounded-xl h-auto w-auto' src='{{$poster_path ? asset($img_path.$poster_path) : asset("storage/poster-not-found.png")}}'/>
