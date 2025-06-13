@@ -123,8 +123,8 @@
             <div>
                 <div class="mt-10 flex flex-wrap justify-center items-center gap-5">
                     @foreach($casts as $cast)
-                    <div class="flex flex-col items-center justify-center">
-                        <img class=" h-45 w-45 rounded-full object-cover" src="{{$cast['profile_path'] ? asset($img_path.$cast['profile_path']) : asset('storage/profile-not-found.jpg')}}" >
+                    <div class="flex flex-col w-45 items-center justify-center text-center">
+                        <img class=" h-45 w-full rounded-full object-cover" src="{{$cast['profile_path'] ? asset($img_path.$cast['profile_path']) : asset('storage/profile-not-found.jpg')}}" >
                         <a href="/cast/{{$cast['id']}}/list-movie-tv" ><h1>{{$cast['name']}}</h1></a>
                         @if($cast['character'])
                         <span>as {{$cast['character']}}</span>
