@@ -11,22 +11,19 @@
                     <h1>{{$tv['number_of_seasons']}} seasons • {{$tv['number_of_episodes']}} episodes</h1>
                 </div>
             </div>
-            <div class="flex gap-2">
-                <div class="flex flex-col items-center">
-                    <h1>Vote Average</h1>
-                    <div class="flex gap-2 items-center">
-                        <img class='w-8 h-8' src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1"/>
-                        <div class="flex flex-col">
-                            <span class="text-gray-400 font-bold">{{round($tv['vote_average'],1)}}</span>
-                            <span class="text-gray-400">{{$tv['vote_count']}}</span>
-                        </div>
+            <div class="flex gap-3">
+                <div class="flex flex-col items-start">
+                    <h1 class="font-bold">Vote Average</h1>
+                    <div class="flex gap-1 items-center h-full">
+                        <img class='w-8 h-8' src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1"/>    
+                        <h1 class="text-gray-400"><span class="text-gray-400 text-2xl font-bold">{{round($tv['vote_average'],1)}}/</span>{{$tv['vote_count']}}</h1>
                     </div>
                 </div>
-                <div class="flex flex-col items-center ">
-                    <h1>Popularity</h1>
-                    <div class="flex gap-2 items-center h-full">
+                <div class="flex flex-col items-start ">
+                    <h1 class="font-bold">Popularity</h1>
+                    <div class="flex gap-1 items-center h-full">
                         <img class='w-8 h-8' src="https://img.icons8.com/?size=100&id=85933&format=png&color=4AC82F"/>
-                        <span class="text-gray-400 font-bold">{{$tv['popularity']}}</span>
+                        <span class="text-gray-400 font-bold text-2xl">{{$tv['popularity']}}</span>
                     </div>
                 </div>
             </div>
@@ -104,14 +101,13 @@
                             <span class="text-gray-400">{{round($recomendation['vote_average'],1)}}</span>
                         </div>
                         <a href='/tv/{{$recomendation['id']}}'>
-                        <h1 class="font-bold">{{$recomendation['original_name']}}</h1>
+                        <h1 class="font-bold text-xl">{{Str::limit($recomendation['original_name'],60)}}</h1>
                         </a>
-                        <div class="flex flex-wrap gap-2">
-                            {{-- {{dd($tv['genre_ids'] )}} --}}
+                        {{-- <div class="flex flex-wrap gap-2">
                             @foreach($recomendation['genre_ids'] as $genreId)
                             <a href='/genre/{{$genreId}}/list-movie-tv' class="rounded-lg border-1 p-1 text-xs"><h1>{{$genres[$genreId]['name']}}</h1></a> 
                             @endforeach
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 @endforeach

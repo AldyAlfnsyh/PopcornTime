@@ -79,7 +79,7 @@
             <div class="flex gap-2">
                 
                 <h1 class="font-bold">Director</h1>
-                @if(isset($directors) == null)
+                @if(isset($directors)!= null)
                     @foreach ($directors as $director)
                         <a href="/director/{{$director['id']}}/list-movie-tv">
                             <p class="text-yellow-500">{{$director['name']}} •</p>
@@ -91,7 +91,7 @@
             </div>
             <div class="flex gap-2">
                 <h1 class="font-bold">Writer</h1>
-                @if(isset($writers) == null)
+                @if(isset($writers) != null)
                     @foreach ($writers as $writer)
                         <a href="/writer/{{$writer['id']}}/list-movie-tv">
                             <p class="text-yellow-500">{{$writer['name']}} •</p>

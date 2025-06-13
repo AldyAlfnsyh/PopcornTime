@@ -76,11 +76,11 @@ class MoviesController extends Controller
             })->values();
             $data_cast = $creditsResponse->json()['cast'];
             $data_crew = $creditsResponse->json()['crew'];
-            // dd($movie);
             $list_cast = collect($data_cast)->sortByDesc('popularity')->take(12);
             $directors = collect($data_crew)->filter(function ($data_crew){
                 return $data_crew["job"]  == "Director";
             })->sortByDesc('popularity')->take(5);
+            
             $writers = collect($data_crew)->filter(function ($data_crew){
                 return $data_crew["department"]  == "Writing";
             })->sortByDesc('popularity')->take(5);
