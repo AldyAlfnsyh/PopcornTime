@@ -11,13 +11,13 @@
         @foreach ($trendings as $index => $trending )
           <div class="{{ $index === 0 ? '' : 'hidden' }} duration-700 ease-in-out bg-center bg-cover w-full h-full  inset-0 flex flex-col justify-end"
             data-carousel-item
-            style="background-image: url('{{ $trending['backdrop_path'] ? asset($img_path . $trending['backdrop_path']) : asset('storage/backdrop-not-found.jpg') }}')">
+            style="background-image: url('{{ isset($trending['backdrop_path']) ? asset($img_path . $trending['backdrop_path']) : asset('storage/backdrop-not-found.jpg') }}')">
             {{-- Overlay gelap transparan --}}
             <div class="absolute inset-0 bg-black/40"></div>
             {{-- Gradient Bottom Overlay --}}
             <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
             <div class="absolute bottom-5  z-10 text-white m-10 flex gap-3">
-              <img class="h-auto w-40  border-white rounded-lg shadow-xl" src="{{$trending['poster_path'] ? asset($img_path . $trending['poster_path']) : asset('storage/poster-not-found.png')}}">
+              <img class="h-auto w-40  border-white rounded-lg shadow-xl" src="{{isset($trending['poster_path']) ? asset($img_path . $trending['poster_path']) : asset('storage/poster-not-found.png')}}">
               <div class="flex flex-col justify-between">
                 <div class="flex flex-col gap-2">
                   <h1 class="text-5xl ">{{$trending['original_title'] ?? $trending['original_name']}}</h1>
@@ -71,7 +71,7 @@
           @if(isset($trendings[$i]))
             <a href="/{{ $trendings[$i]['media_type'] == 'tv' ? 'tv' : 'movie' }}/{{ $trendings[$i]['id'] }}" class="flex gap-3 items-start">
               
-              <img src="{{ $trendings[$i]['poster_path'] ? asset($img_path.$trendings[$i]['poster_path']) : asset('storage/poster-not-found.png')}}" alt="Poster"
+              <img src="{{ isset($trendings[$i]['poster_path']) ? asset($img_path.$trendings[$i]['poster_path']) : asset('storage/poster-not-found.png')}}" alt="Poster"
                 class="w-20 h-auto rounded shadow-md">
               <div>
                 <h3 class="text-white font-medium">{{$trendings[$i]["original_title"] ?? $trendings[$i]["original_name"]}}</h3>
@@ -100,7 +100,7 @@
         <div class="rounded-lg shadow-xl bg-gray-700 w-64 h-128">
             <a href="/movie/{{ $movie['id'] }}">
                 <div class="h-3/4">
-                  <img class='rounded-t-lg h-full w-full' src='{{$movie['poster_path'] ? asset($img_path.$movie['poster_path']) : asset('/storage/poster-not-found.png')}}'/>
+                  <img class='rounded-t-lg h-full w-full' src='{{isset($movie['poster_path']) ? asset($img_path.$movie['poster_path']) : asset('/storage/poster-not-found.png')}}'/>
                 </div>
             </a>
             <div class="p-2 text-white flex flex-col gap-1">
@@ -133,7 +133,7 @@
         <div class="rounded-lg shadow-xl bg-gray-700 w-64 h-128">
             <a href="/tv/{{ $movie['id'] }}">
                 <div class="h-3/4">
-                  <img class='rounded-t-lg h-full w-full' src='{{$movie['poster_path'] ? asset($img_path.$movie['poster_path']) : asset('/storage/poster-not-found.png')}}'/>
+                  <img class='rounded-t-lg h-full w-full' src='{{isset($movie['poster_path']) ? asset($img_path.$movie['poster_path']) : asset('/storage/poster-not-found.png')}}'/>
                 </div>
             </a>
             <div class="p-2 text-white flex flex-col gap-1">

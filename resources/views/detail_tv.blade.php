@@ -50,7 +50,7 @@
         <div> --}}
 
         <div class="flex h-120 gap-1 justify-center">
-            <img class='rounded-xl h-auto w-auto' src='{{$tv['poster_path'] ? asset($img_path.$tv['poster_path']) : asset('storage/poster-not-found.png')}}'/>
+            <img class='rounded-xl h-auto w-auto' src='{{isset($tv['poster_path']) ? asset($img_path.$tv['poster_path']) : asset('storage/poster-not-found.png')}}'/>
 
             @if(count($trailers))
             <iframe width="100%" height="100%" class="rounded-xl" src="https://www.youtube.com/embed/{{ $trailers[0]['key'] }}" frameborder="0" allowfullscreen>
@@ -93,7 +93,7 @@
             
                 <div class="rounded-lg shadow-xl bg-gray-700 w-60 h-124">
                     <a href='/tv/{{$recomendation['id']}}'>
-                    <img class='rounded-t-lg h-auto w-auto' src='{{$recomendation['poster_path'] ? asset($img_path.$recomendation['poster_path']) : asset("storage/poster-not-found.png")}}'/>
+                    <img class='rounded-t-lg h-auto w-auto' src='{{isset($recomendation['poster_path']) ? asset($img_path.$recomendation['poster_path']) : asset("storage/poster-not-found.png")}}'/>
                     </a>
                     <div class="p-2 text-white flex flex-col gap-1">
                         <div class="flex gap-1 items-center">

@@ -53,9 +53,9 @@
 
         <div class="flex h-120 gap-1 justify-center">
             @if(isset($type) && $type=='episode_detail')
-                <img class='rounded-xl h-auto w-auto' src='{{$still_path ? asset($img_path.$still_path) : asset("storage/still-image-not-found.jpg")}}'/>
+                <img class='rounded-xl h-auto w-auto' src='{{isset($still_path) ? asset($img_path.$still_path) : asset("storage/still-image-not-found.jpg")}}'/>
             @else
-                <img class='rounded-xl h-auto w-auto' src='{{$poster_path ? asset($img_path.$poster_path) : asset("storage/poster-not-found.png")}}'/>
+                <img class='rounded-xl h-auto w-auto' src='{{isset($poster_path) ? asset($img_path.$poster_path) : asset("storage/poster-not-found.png")}}'/>
             @endif
 
 
@@ -124,7 +124,7 @@
                 <div class="mt-10 flex flex-wrap justify-center items-center gap-5">
                     @foreach($casts as $cast)
                     <div class="flex flex-col w-45 items-center justify-center text-center">
-                        <img class=" h-45 w-full rounded-full object-cover" src="{{$cast['profile_path'] ? asset($img_path.$cast['profile_path']) : asset('storage/profile-not-found.jpg')}}" >
+                        <img class=" h-45 w-full rounded-full object-cover" src="{{isset($cast['profile_path']) ? asset($img_path.$cast['profile_path']) : asset('storage/profile-not-found.jpg')}}" >
                         <a href="/cast/{{$cast['id']}}/list-movie-tv" ><h1>{{$cast['name']}}</h1></a>
                         @if($cast['character'])
                         <span>as {{$cast['character']}}</span>
@@ -142,7 +142,7 @@
             
                 <div class="rounded-lg shadow-xl bg-gray-700 w-60 h-124">
                     <a href='/movie/{{$recomendation['id']}}'>
-                    <img class='rounded-t-lg h-auto w-auto' src='{{$recomendation['poster_path'] ? asset($img_path.$recomendation['poster_path']) : asset("storage/poster-not-found.png")}}'/>
+                    <img class='rounded-t-lg h-auto w-auto' src='{{isset($recomendation['poster_path']) ? asset($img_path.$recomendation['poster_path']) : asset("storage/poster-not-found.png")}}'/>
                     </a>
                     <div class="p-2 text-white flex flex-col gap-1">
                         <div class="flex gap-1 items-center">

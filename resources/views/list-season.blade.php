@@ -1,6 +1,6 @@
 <x-layout>
     <div class="flex h-30 -mx-26 w-screen bg-slate-700">
-        <img class='rounded-xl h-auto w-auto p-2 ml-26' src='{{$poster_path ? asset($img_path.$poster_path) : '/storage/poster-not-found.png'}}'/>
+        <img class='rounded-xl h-auto w-auto p-2 ml-26' src='{{isset($poster_path) ? asset($img_path.$poster_path) : '/storage/poster-not-found.png'}}'/>
         <div class="flex flex-col justify-end p-2  ">
             <h1 class="text-2xl  text-slate-300">{{$title}}</h1>
             <h1 class="text-4xl text-white font-bold">{{$type_group}} List</h1>
