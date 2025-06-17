@@ -16,7 +16,7 @@
                     @if( isset($data['poster_path'])  || isset($data['still_path'] ))
                     <img class='rounded-xl h-auto w-auto p-2' src='{{asset($img_path. ($data['poster_path'] ?? $data['still_path']))}}'/>
                     @else
-                    <img class='rounded-xl h-auto w-auto p-2' src='{{$data['episode_number'] ? asset('/storage/still-image-not-found.jpg') : asset('/storage/poster-not-found.png')}}'/>
+                    <img class='rounded-xl h-auto w-auto p-2' src='{{isset($data['episode_number']) ? asset('/storage/still-image-not-found.jpg') : asset('/storage/poster-not-found.png')}}'/>
                     @endif
                     <div class="flex flex-col justify-start py-2">
                         @if(isset($data['episode_number']))
