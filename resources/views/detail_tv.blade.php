@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="mt-10 text-white flex flex-col gap-5">
+    <div class="container mx-auto mt-10 text-white flex flex-col gap-5">
         <div class="flex justify-between">
             <div class="flex flex-col">
                 <h1 class="font-bold text-5xl">{{$tv['original_name']}}</h1>
@@ -85,15 +85,15 @@
             </div>
         </a>
 
-        @if(isset($recomendations))
+        @if(count($recomendations)>0)
         <div class="flex flex-col  mt-10">
             <h1 class="font-bold text-3xl text-white">Recomendation</h1>
-            <div class="mt-10 flex flex-wrap items-center gap-3 justify-center">
+            <div class="mt-10 flex  items-stretch gap-3 justify-center">
                 @foreach ($recomendations as $recomendation)
             
-                <div class="rounded-lg shadow-xl bg-gray-700 w-60 h-124">
+                <div class="rounded-lg shadow-xl bg-gray-700 flex-1 h-auto">
                     <a href='/tv/{{$recomendation['id']}}'>
-                    <img class='rounded-t-lg h-auto w-auto' src='{{isset($recomendation['poster_path']) ? asset($img_path.$recomendation['poster_path']) : asset("storage/poster-not-found.png")}}'/>
+                    <img class='rounded-t-lg h-3/4 w-full' src='{{isset($recomendation['poster_path']) ? asset($img_path.$recomendation['poster_path']) : asset("storage/poster-not-found.png")}}'/>
                     </a>
                     <div class="p-2 text-white flex flex-col gap-1">
                         <div class="flex gap-1 items-center">

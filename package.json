@@ -17,7 +17,7 @@
     },
     "dependencies": {
         "flowbite": "^3.1.2",
-        "swiper": "^11.2.6",
+        "swiper": "^11.2.10",
         "tw-elements": "^2.0.0"
     }
 }

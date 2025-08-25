@@ -15,37 +15,21 @@ module.exports = {
         },
     },
 };
-// import Swiper JS
-import Swiper from "swiper";
-// import Swiper styles
-import "swiper/css";
+// import Swiper from "swiper/bundle";
+// import "swiper/css/bundle";
 
-// const swiper = new Swiper(...);
-const swiper = new Swiper(".swiper", {
-    // Optional parameters
-    direction: "vertical",
-    loop: true,
-    grabCursor: true,
-
-    navigation: true,
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-        dynamicBullets: true,
-    },
-    autoplay: {
-        delay: 3000, // 3 detik per slide
-        disableOnInteraction: false, // tetap autoplay meskipun user swipe
-    },
-
-    // Navigation arrows
-    navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-    },
-
-    // And if we need scrollbar
-    scrollbar: {
-        el: ".swiper-scrollbar",
-    },
-});
+// const swiper = new Swiper(".swiper", {
+//     slidesPerView: 3,
+//     spaceBetween: 10,
+//     slidesPerGroup: 1,
+//     loop: true,
+//     navigation: {
+//         nextEl: ".swiper-button-next",
+//         prevEl: ".swiper-button-prev",
+//     },
+//     breakpoints: {
+//         640: { slidesPerView: 1 },
+//         768: { slidesPerView: 2 },
+//         1024: { slidesPerView: 4 },
+//     },
+// });

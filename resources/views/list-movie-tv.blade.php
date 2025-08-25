@@ -1,9 +1,9 @@
 <x-layout>
 
-    <div class="mt-5 flex flex-wrap items-center gap-3 justify-center">
+    <div class="mx-auto container mt-5 flex flex-wrap items-center gap-3 justify-center">
         @foreach ($movies as $movie)
     
-        <div class="rounded-lg shadow-xl bg-gray-700 w-64 h-128">
+        <div class="rounded-lg shadow-xl bg-gray-700 w-61 h-128">
             <a href="/{{ $movie['type'] == 'tv' ? 'tv' : 'movie' }}/{{ $movie['id'] }}">
                 <div class="h-3/4">
                     <img class='rounded-t-lg h-full w-full' src='{{$movie['poster_path'] ? asset($poster_path.$movie['poster_path']) : asset('/storage/poster-not-found.png')}}'/>
@@ -24,7 +24,7 @@
                 <h1 class="text-gray-400 font-bold" >{{$movie['release_date']}}</h1>
                 
                 <a href="/{{ $movie['type'] == 'tv' ? 'tv' : 'movie' }}/{{ $movie['id'] }}">
-                <h1 class="font-bold text-xl shadow-xl">{{Str::limit($movie['title'] ?? $movie['name'], 40)}}</h1>
+                <h1 class="font-bold text-xl">{{Str::limit($movie['title'] ?? $movie['name'], 40)}}</h1>
                 </a>
                 {{-- <div class="flex flex-wrap gap-2">
                     @foreach(array_slice($movie['genre_ids'],0,2) as $genreId)
