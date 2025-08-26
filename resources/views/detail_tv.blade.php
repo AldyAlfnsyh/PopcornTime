@@ -1,8 +1,9 @@
 <x-layout>
     <div class="container mx-auto mt-10 text-white flex flex-col gap-5">
-        <div class="flex justify-between">
+        <div class="flex flex-col-reverse md:flex-col">
+        <div class="flex md:justify-between md:flex-row flex-col">
             <div class="flex flex-col">
-                <h1 class="font-bold text-5xl">{{$tv['original_name']}}</h1>
+                <h1 class="font-bold md:text-5xl text-3xl">{{$tv['original_name']}}</h1>
                 <div class="flex gap-1">
                     <h1>{{$tv['first_air_date']}} •</h1>
                     @if(count($tv['origin_country']))
@@ -15,47 +16,29 @@
                 <div class="flex flex-col items-start">
                     <h1 class="font-bold">Vote Average</h1>
                     <div class="flex gap-1 items-center h-full">
-                        <img class='w-8 h-8' src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1"/>    
-                        <h1 class="text-gray-400"><span class="text-gray-400 text-2xl font-bold">{{round($tv['vote_average'],1)}}/</span>{{$tv['vote_count']}}</h1>
+                        <img class='md:w-8 md:h-8 w-6 h-6' src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1"/>    
+                        <h1 class="text-gray-400"><span class="text-gray-400 md:text-2xl text-xl font-bold">{{round($tv['vote_average'],1)}}/</span>{{$tv['vote_count']}}</h1>
                     </div>
                 </div>
                 <div class="flex flex-col items-start ">
                     <h1 class="font-bold">Popularity</h1>
                     <div class="flex gap-1 items-center h-full">
-                        <img class='w-8 h-8' src="https://img.icons8.com/?size=100&id=85933&format=png&color=4AC82F"/>
-                        <span class="text-gray-400 font-bold text-2xl">{{$tv['popularity']}}</span>
+                        <img class='md:w-8 md:h-8 w-6 h-6' src="https://img.icons8.com/?size=100&id=85933&format=png&color=4AC82F"/>
+                        <span class="text-gray-400 font-bold md:text-2xl text-xl">{{$tv['popularity']}}</span>
                     </div>
                 </div>
             </div>
         </div>
         
-        {{-- <div class="flex h-100">
-            <img class='rounded-t-lg h-auto w-auto' src='{{asset($img_path.$tv['poster_path'])}}'/>
-            <div class="swiper">
-                <div class="slider-wrapper">
-                    <div class="swiper-wrapper">
-                        @foreach ($trailers as $trailer)
-                        <div class="swiper-slide">
-                            <iframe width="100%" height="100%" class="mt-2" src="https://www.youtube.com/embed/{{ $trailer['key'] }}" frameborder="0" allowfullscreen>
-                            </iframe>
-                        </div>
-                        @endforeach
-                    </div>
-                    <!-- If we need navigation buttons -->
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-pagination"></div>
-                </div>
-            </div>
-        <div> --}}
 
-        <div class="flex h-120 gap-1 justify-center">
-            <img class='rounded-xl h-auto w-auto' src='{{isset($tv['poster_path']) ? asset($img_path.$tv['poster_path']) : asset('storage/poster-not-found.png')}}'/>
+        <div class="flex md:h-120 md:gap-1 md:justify-center">
+            <img class='hidden md:block rounded-xl h-auto w-auto' src='{{isset($tv['poster_path']) ? asset($img_path.$tv['poster_path']) : asset('storage/poster-not-found.png')}}'/>
 
             @if(count($trailers))
-            <iframe width="100%" height="100%" class="rounded-xl" src="https://www.youtube.com/embed/{{ $trailers[0]['key'] }}" frameborder="0" allowfullscreen>
+            <iframe width="100%" height="100%" class="rounded-xl h-80 md:h-auto" src="https://www.youtube.com/embed/{{ $trailers[0]['key'] }}" frameborder="0" allowfullscreen>
             </iframe>
             @endif
+        </div>
         </div>
 
         <div class="flex gap-2">
@@ -86,12 +69,15 @@
         </a>
 
         @if(count($recomendations)>0)
-        <div class="flex flex-col  mt-10">
+        <div class="mt-10">
             <h1 class="font-bold text-3xl text-white">Recomendation</h1>
-            <div class="mt-10 flex  items-stretch gap-3 justify-center">
-                @foreach ($recomendations as $recomendation)
-            
-                <div class="rounded-lg shadow-xl bg-gray-700 flex-1 h-auto">
+
+            {{-- Using Swiper JS --}}
+            <div class="swiper mt-5">
+                <div class="swiper-wrapper items-stretch">
+                    @foreach ($recomendations as $recomendation)
+                    <div class="swiper-slide">
+                        <div class="rounded-lg shadow-xl bg-gray-700 flex-1 h-auto">
                     <a href='/tv/{{$recomendation['id']}}'>
                     <img class='rounded-t-lg h-3/4 w-full' src='{{isset($recomendation['poster_path']) ? asset($img_path.$recomendation['poster_path']) : asset("storage/poster-not-found.png")}}'/>
                     </a>
@@ -101,17 +87,19 @@
                             <span class="text-gray-400">{{round($recomendation['vote_average'],1)}}</span>
                         </div>
                         <a href='/tv/{{$recomendation['id']}}'>
-                        <h1 class="font-bold text-xl">{{Str::limit($recomendation['original_name'],60)}}</h1>
+                        <h1 class="font-bold text-xl min-h-[3.5rem] line-clamp-2">{{Str::limit($recomendation['original_name'],60)}}</h1>
                         </a>
-                        {{-- <div class="flex flex-wrap gap-2">
-                            @foreach($recomendation['genre_ids'] as $genreId)
-                            <a href='/genre/{{$genreId}}/list-movie-tv' class="rounded-lg border-1 p-1 text-xs"><h1>{{$genres[$genreId]['name']}}</h1></a> 
-                            @endforeach
-                        </div> --}}
                     </div>
                 </div>
-                @endforeach
+                    </div>
+                    @endforeach
+                </div>
+
+                <!-- Navigation Button -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
+
         </div>
         @endif
         

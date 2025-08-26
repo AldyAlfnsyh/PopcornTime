@@ -3,10 +3,10 @@
     @php
       $currentIndex = 0;   
     @endphp
-  <div class="container px-10 sm:mx-auto mt-10 flex items-stretch gap-2">
+  <div class="container  mx-auto mt-10 flex items-stretch gap-2">
     <div id="default-carousel" class="relative lg:w-7/10 w-full h-auto" data-carousel="slide">
       {{-- Carousel wrapper --}}
-      <div class="relative h-[500px] overflow-hidden rounded-lg md:h-[500px]">
+      <div class="relative h-[500px] overflow-hidden rounded-lg ">
         @foreach ($trendings as $index => $trending )
           <div class="{{ $index === 0 ? '' : 'hidden' }} duration-700 ease-in-out bg-center bg-cover w-full h-full  inset-0 flex flex-col justify-end"
              data-carousel-item
@@ -16,7 +16,7 @@
             {{-- Gradient Bottom Overlay --}}
             <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
             <div class="absolute bottom-5  z-10 text-white m-10 flex h-2/4 gap-3">
-              <img class="h-full w-auto  border-white rounded-lg shadow-xl" src="{{isset($trending['poster_path']) ? asset($img_path . $trending['poster_path']) : asset('storage/poster-not-found.png')}}">
+              <img class="hidden md:block h-full w-auto  border-white rounded-lg shadow-xl" src="{{isset($trending['poster_path']) ? asset($img_path . $trending['poster_path']) : asset('storage/poster-not-found.png')}}">
               <div class="h-full flex flex-col justify-between">
                 <div class="flex flex-col gap-2">
                   <h1 class="text-5xl line-clamp-2">{{$trending['original_title'] ?? $trending['original_name']}}</h1>

@@ -34,7 +34,7 @@
 
         <div class="flex md:h-120 md:gap-1 md:justify-center ">
             @if(isset($type) && $type=='episode_detail')
-                <img class=' rounded-xl h-auto w-full' src='{{isset($still_path) ? asset($img_path.$still_path) : asset("storage/still-image-not-found.jpg")}}'/>
+                <img class=' rounded-xl h-auto w-full md:h-full md:w-auto' src='{{isset($still_path) ? asset($img_path.$still_path) : asset("storage/still-image-not-found.jpg")}}'/>
             @else
                 <img class='hidden md:block rounded-xl h-auto w-auto' src='{{isset($poster_path) ? asset($img_path.$poster_path) : asset("storage/poster-not-found.png")}}'/>
             @endif
@@ -117,27 +117,40 @@
             </div>
         </div>
         @if(isset($recomendations))
-        <div class="flex flex-col  mt-10">
+        <div class=" mt-10">
             <h1 class="font-bold text-3xl text-white">Recomendation</h1>
-            <div class="mt-10 flex items-stretch gap-3 justify-center ">
-                @foreach ($recomendations as $recomendation)
-            
-                <div class="rounded-lg shadow-xl bg-gray-700 flex-1 h-auto">
-                    <a href='/movie/{{$recomendation['id']}}'>
-                        
-                    <img class='rounded-t-lg h-3/4 w-full' src='{{isset($recomendation['poster_path']) ? asset($img_path.$recomendation['poster_path']) : asset("storage/poster-not-found.png")}}'/>
-                    </a>
-                    <div class="p-2 text-white flex flex-col gap-1">
-                        <div class="flex gap-1 items-center">
-                            <img class='w-5 h-5' src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1"/>
-                            <span class="text-gray-400">{{round($recomendation['vote_average'],1)}}</span>
+
+
+            {{-- Using Swiper JS --}}
+            <div class="swiper mt-5">
+                <div class="swiper-wrapper items-stretch">
+                    @foreach ($recomendations as $recomendation)
+                    <div class="swiper-slide">
+                        <div class="rounded-lg shadow-xl bg-gray-700 flex-1 h-auto">
+                            <a href='/movie/{{$recomendation['id']}}'>
+                                <div class="h-3/4">
+
+                                    <img class='rounded-t-lg h-full w-full' src='{{isset($recomendation['poster_path']) ? asset($img_path.$recomendation['poster_path']) : asset("storage/poster-not-found.png")}}'/>
+                                    
+                                </div>
+                            </a>
+                            <div class="p-2 text-white flex flex-col gap-1">
+                                <div class="flex gap-1 items-center">
+                                    <img class='w-5 h-5' src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1"/>
+                                    <span class="text-gray-400">{{round($recomendation['vote_average'],1)}}</span>
+                                </div>
+                                <a href='/movie/{{$recomendation['id']}}'>
+                                <h1 class="font-bold text-xl line-clamp-2 min-h-[3.5rem]">{{Str::limit($recomendation['title'],60)}}</h1>
+                                </a>
+                            </div>
                         </div>
-                        <a href='/movie/{{$recomendation['id']}}'>
-                        <h1 class="font-bold text-xl">{{Str::limit($recomendation['title'],60)}}</h1>
-                        </a>
                     </div>
+                    @endforeach
                 </div>
-                @endforeach
+
+                <!-- Navigation Button -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
         </div>
         @endif

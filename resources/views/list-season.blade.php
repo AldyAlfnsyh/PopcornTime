@@ -5,22 +5,20 @@
             <div class="flex flex-col justify-end p-2  ">
                 <h1 class="text-2xl  text-slate-300">{{$title}}</h1>
                 <h1 class="text-4xl text-white font-bold">{{$type_group}} List</h1>
-                {{-- {{dd($link_back)}} --}}
                 <a href="{{$link_back}}" class=" text-white text-1xl">Back to Main</a>
             </div>
         </div>
     </div>
-    <div class="container mx-auto mt-10">
+    <div class=" container mx-auto mt-10">
         <div class="flex flex-col">
             @foreach($datas as $data)
-            {{-- {{dd($data)}} --}}
-                <div class="h-60 w-full flex gap-5">
+                <div class="h-auto w-full flex gap-5">
                     @if( isset($data['poster_path'])  || isset($data['still_path'] ))
-                    <img class='rounded-xl h-auto w-auto p-2' src='{{asset($img_path. ($data['poster_path'] ?? $data['still_path']))}}'/>
+                    <img class='rounded-xl h-auto w-2/5 md:w-1.5/5 p-2' src='{{asset($img_path. ($data['poster_path'] ?? $data['still_path']))}}'/>
                     @else
-                    <img class='rounded-xl h-auto w-auto p-2' src='{{isset($data['episode_number']) ? asset('/storage/still-image-not-found.jpg') : asset('/storage/poster-not-found.png')}}'/>
+                    <img class='rounded-xl md:h-60 w-2/5 md:w-1.5/5 p-2 object-cover' src='{{isset($data['episode_number']) ? asset('/storage/still-image-not-found.jpg') : asset('/storage/poster-not-found.png')}}'/>
                     @endif
-                    <div class="flex flex-col justify-start py-2">
+                    <div class="flex flex-col justify-start w-3/5 md:w-3.5/5 py-2">
                         @if(isset($data['episode_number']))
                             <a href="/tv/{{$tv_id}}/season/{{$data['season_number']}}/episode/{{$data['episode_number']}}">
                         @else
@@ -33,7 +31,7 @@
                         @else
                         <h2 class="text-1xl text-slate-300">{{$data['air_date']}} • {{round($data['vote_average'],1)}} ⭐</h2>
                         @endif
-                        <p class=" text-slate-300 pt-5">{{$data['overview']}}</p>
+                        <p class=" text-slate-300 pt-5 line-clamp-6">{{$data['overview']}}</p>
                     </div>
                 </div>
                 <hr class="border-t my-5 border-slate-400 w-full">
