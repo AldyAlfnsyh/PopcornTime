@@ -13,18 +13,21 @@
                 </div>
             </div>
             <div class="flex gap-3">
-                <div class="flex flex-col items-start">
+                <div class="flex flex-col items-start md:min-w-26">
                     <h1 class="font-bold">Vote Average</h1>
-                    <div class="flex gap-1 items-center h-full">
+                    <div class="flex gap-1 items-center h-auto">
                         <img class='md:w-8 md:h-8 w-6 h-6' src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1"/>    
-                        <h1 class="text-gray-400"><span class="text-gray-400 md:text-2xl text-xl font-bold">{{round($tv['vote_average'],1)}}/</span>{{$tv['vote_count']}}</h1>
+                        <div class="flex flex-col w-auto">
+                            <h1 class="text-gray-400"><span class="text-gray-400 md:text-2xl text-xl font-bold">{{round($tv['vote_average'],1)}}/</span>10</h1>
+                            <h1 class="text-gray-400 hidden md:block">{{$tv['vote_count']}}</h1>
+                        </div>
                     </div>
                 </div>
-                <div class="flex flex-col items-start ">
+                <div class="flex flex-col items-start md:min-w-20">
                     <h1 class="font-bold">Popularity</h1>
-                    <div class="flex gap-1 items-center h-full">
-                        <img class='md:w-8 md:h-8 w-6 h-6' src="https://img.icons8.com/?size=100&id=85933&format=png&color=4AC82F"/>
-                        <span class="text-gray-400 font-bold md:text-2xl text-xl">{{$tv['popularity']}}</span>
+                    <div class="flex gap-1 items-center h-auto">
+                        <img class='md:w-8 md:h-8 w-6 h-6' src="https://img.icons8.com/?size=48&id=85933&format=png&color=4AC82F"/>
+                        <span class="text-gray-400 font-bold md:text-2xl text-xl">{{number_format($tv['popularity'],0,',','.')}}K</span>
                     </div>
                 </div>
             </div>
@@ -41,8 +44,7 @@
         </div>
         </div>
 
-        <div class="flex gap-2">
-            {{-- {{dd($tv['genres'] )}} --}}
+        <div class="flex flex-wrap gap-2">
             @foreach($tv['genres'] as $genre)
             <a href="/genre/{{$genres[$genre['id']]['id']}}/list-movie-tv" class="rounded-xl border-1 px-3 text-lg"><h1>{{$genres[$genre['id']]['name']}}</h1></a> 
             @endforeach
@@ -51,9 +53,11 @@
             <p>{{$tv['overview']}}</p>
             <div class="flex gap-2">
                 <h1 class="font-bold">Production Companies</h1>
+                <div class="flex flex-wrap gap-2">
                 @foreach ($tv['production_companies'] as $production_companie)
                     <p class="text-yellow-500">{{$production_companie['name']}} •</p>
                 @endforeach
+                </div>
             </div>
             <div class="flex gap-2">
                 <h1 class="font-bold">Language</h1>

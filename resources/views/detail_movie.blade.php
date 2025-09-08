@@ -2,7 +2,7 @@
     <div class="mx-auto container mt-10 text-white flex flex-col gap-5">
         <div class="flex flex-col-reverse md:flex-col">
         <div class="flex md:justify-between md:flex-row flex-col ">
-            <div class="flex flex-col">
+            <div class=" flex flex-col">
                 <h1 class="font-bold md:text-5xl text-3xl">{{$title}}</h1>
                 <div class="flex gap-1">
                     <h1>{{$release_date}} •</h1>
@@ -12,23 +12,28 @@
                     <h1>{{$runtime}} min</h1>
                 </div>
             </div>
-            <div class="flex gap-3">
-                <div class="flex flex-col items-start">
+            <div class=" flex gap-3">
+                <div class="flex flex-col items-start  md:min-w-26">
                     <h1  class="font-bold ">Vote Average</h1>
-                    <div class="flex gap-1 items-center h-full">
-                        <img class='md:w-8 md:h-8 w-6 h-6' src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1"/>    
-                        <h1 class="text-gray-400"><span class="text-gray-400 md:text-2xl text-xl font-bold">{{round($vote_average,1)}}/</span>{{$vote_count}}</h1>
+                    <div class="flex gap-1 items-center h-auto">
+                        <img class='md:w-8 md:h-8 w-6 h-6' src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1"/>
+                        <div class="flex flex-col w-auto">  
+                            <h1 class="text-gray-400"><span class="text-gray-400 md:text-2xl text-xl font-bold">{{round($vote_average,1)}}/</span>10</h1>
+                            <h1 class="text-gray-400 hidden md:block">{{ $vote_count}}</h1>
+                        </div>
                     </div>
                 </div>
-                @if(isset($popularity))
-                <div class="flex flex-col items-start ">
+                <div class="flex flex-col items-start  md:min-w-20">
+                    @if(isset($popularity))
                     <h1 class="font-bold">Popularity</h1>
-                    <div class="flex gap-1 items-center h-full">
-                        <img class='md:w-8 md:h-8 w-6 h-6' src="https://img.icons8.com/?size=100&id=85933&format=png&color=4AC82F"/>
-                        <h1 class="text-gray-400 font-bold md:text-2xl text-xl">{{$popularity}}</h1>
+                    <div class="flex gap-1 items-center h-auto">
+                        <img class='md:w-8 md:h-8 w-6 h-6' src="https://img.icons8.com/?size=48&id=85933&format=png&color=4AC82F"/>
+                        <div>
+                        <h1 class="text-gray-400 font-bold md:text-2xl text-xl">{{number_format($popularity, 0, ',', '.')}}K</h1>
+                        </div>
                     </div>
+                    @endif
                 </div>
-                @endif
             </div>
         </div>
 
@@ -62,11 +67,13 @@
                 
                 <h1 class="font-bold">Director</h1>
                 @if(isset($directors)!= null)
+                    <div class="flex flex-wrap gap-2">
                     @foreach ($directors as $director)
                         <a href="/director/{{$director['id']}}/list-movie-tv">
                             <p class="text-yellow-500">{{$director['name']}} •</p>
                         </a>
                     @endforeach
+                    </div>
                 @else
                     <p class="text-yellow-500"> - </p>
                 @endif
@@ -74,11 +81,13 @@
             <div class="flex gap-2">
                 <h1 class="font-bold">Writer</h1>
                 @if(isset($writers) != null)
+                    <div class="flex flex-wrap gap-2">
                     @foreach ($writers as $writer)
                         <a href="/writer/{{$writer['id']}}/list-movie-tv">
                             <p class="text-yellow-500">{{$writer['name']}} •</p>
                         </a>
                     @endforeach
+                    </div>
                 @else
                     <p class="text-yellow-500"> - </p> 
                 @endif
@@ -86,9 +95,11 @@
             @if(isset($production_companies))
             <div class="flex gap-2">
                 <h1 class="font-bold">Production Companies</h1>
+                <div class="flex flex-wrap gap-2">
                 @foreach ($production_companies as $production_companie)
                     <p class="text-yellow-500">{{$production_companie['name']}} •</p>
                 @endforeach
+                </div>
             </div>
             @endif
             @if(isset($spoken_languages))
@@ -100,21 +111,32 @@
             </div>
             @endif
         </div>
-        <div class="flex flex-col  mt-10">
+        <div class="mt-10">
             <h1 class="font-bold text-3xl text-white">Top Cast</h1>
-            <div>
-                <div class="mt-10 flex flex-wrap justify-center items-center gap-5">
+
+            {{-- Using SwiperJS --}}
+            <div class="swiper mt-5">
+                <div class="swiper-wrapper ">
                     @foreach($casts as $cast)
-                    <div class="flex flex-col w-45 items-center justify-center text-center">
-                        <img class=" h-45 w-full rounded-full object-cover" src="{{isset($cast['profile_path']) ? asset($img_path.$cast['profile_path']) : asset('storage/profile-not-found.jpg')}}" >
-                        <a href="/cast/{{$cast['id']}}/list-movie-tv" ><h1>{{$cast['name']}}</h1></a>
-                        @if($cast['character'])
-                        <span>as {{$cast['character']}}</span>
-                        @endif
+                    <div class="swiper-slide">
+                        <div class="flex flex-col flex-1 h-auto items-center justify-center text-center">
+                            <img class=" h-3/4 w-auto rounded-full object-cover" src="{{isset($cast['profile_path']) ? asset($img_path.$cast['profile_path']) : asset('storage/profile-not-found.jpg')}}" >
+                            <div class="h-1/4">
+                            <a href="/cast/{{$cast['id']}}/list-movie-tv" ><h1>{{$cast['name']}}</h1></a>
+                            @if($cast['character'])
+                            <span>as {{$cast['character']}}</span>
+                            @endif
+                            </div>
+                        </div>
                     </div>
                     @endforeach
                 </div>
+
+                <!-- Navigation Button -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
+
         </div>
         @if(isset($recomendations))
         <div class=" mt-10">
