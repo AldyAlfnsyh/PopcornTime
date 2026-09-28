@@ -1,6 +1,6 @@
 <x-layout>
     <div class="h-30  w-screen bg-slate-700">
-        <div class="container mx-auto flex h-full">
+        <div class=" mx-auto w-[90%] flex h-full">
             <img class='rounded-xl h-auto w-auto p-2' src='{{isset($poster_path) ? asset($img_path.$poster_path) : '/storage/poster-not-found.png'}}'/>
             <div class="flex flex-col justify-end p-2  ">
                 <h1 class="text-2xl  text-slate-300">{{$title}}</h1>
@@ -9,16 +9,16 @@
             </div>
         </div>
     </div>
-    <div class=" container mx-auto mt-10">
+    <div class="  mx-auto w-[90%] mt-10">
         <div class="flex flex-col">
             @foreach($datas as $data)
                 <div class="h-auto w-full flex gap-5">
                     @if( isset($data['poster_path'])  || isset($data['still_path'] ))
-                    <img class='rounded-xl h-auto w-2/5 md:w-1.5/5 p-2' src='{{asset($img_path. ($data['poster_path'] ?? $data['still_path']))}}'/>
+                    <img class='rounded-xl h-auto w-2/5 md:w-1/5 p-2 object-cover' src='{{asset($img_path. ($data['poster_path'] ?? $data['still_path']))}}'/>
                     @else
-                    <img class='rounded-xl md:h-60 w-2/5 md:w-1.5/5 p-2 object-cover' src='{{isset($data['episode_number']) ? asset('/storage/still-image-not-found.jpg') : asset('/storage/poster-not-found.png')}}'/>
+                    <img class='rounded-xl md:h-60 w-2/5 md:w-1/5 p-2 object-cover' src='{{isset($data['episode_number']) ? asset('/storage/still-image-not-found.jpg') : asset('/storage/poster-not-found.png')}}'/>
                     @endif
-                    <div class="flex flex-col justify-start w-3/5 md:w-3.5/5 py-2">
+                    <div class="flex flex-col justify-start w-3/5 md:w-4/5 py-2">
                         @if(isset($data['episode_number']))
                             <a href="/tv/{{$tv_id}}/season/{{$data['season_number']}}/episode/{{$data['episode_number']}}">
                         @else

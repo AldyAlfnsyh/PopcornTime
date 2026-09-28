@@ -9,22 +9,22 @@ class TvController extends Controller
 {
     public function tv_detail($id){
         $response_tv = Http::withOptions([
-            'verify' =>false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])-> get("https://api.themoviedb.org/3/tv/{$id}",[
             'api_key' => env('TMDB_API_KEY'),
         ]);
         $response_videos = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get("https://api.themoviedb.org/3/tv/{$id}/videos",[
             'api_key' => env('TMDB_API_KEY'),
         ]);
         $genresResponse = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get('https://api.themoviedb.org/3/genre/tv/list',[
             'api_key' => env('TMDB_API_KEY'),
         ]);
         $recomendationsResponse = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get("https://api.themoviedb.org/3/tv/{$id}/recommendations",[
             'api_key' => env('TMDB_API_KEY'),
         ]);
@@ -48,7 +48,7 @@ class TvController extends Controller
 
     public function tv_list_season($id){
         $response_tv = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get("https://api.themoviedb.org/3/tv/{$id}",[
             'api_key' => env('TMDB_API_KEY'),
         ]);
@@ -73,7 +73,7 @@ class TvController extends Controller
 
     public function tv_list_episode($tv_id, $number_season){
         $response_season = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get("https://api.themoviedb.org/3/tv/{$tv_id}/season/{$number_season}",[
             'api_key' => env('TMDB_API_KEY'),
         ]);
@@ -97,7 +97,7 @@ class TvController extends Controller
 
     public function tv_episode_detail($tv_id, $number_season, $number_episode){
         $response_episode_detail = Http::withOptions([
-            'verify' => false
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get("https://api.themoviedb.org/3/tv/{$tv_id}/season/{$number_season}/episode/{$number_episode}",[
             'api_key' => env("TMDB_API_KEY")
         ]);
@@ -148,7 +148,7 @@ class TvController extends Controller
         $order = $request->query('order');
         
         $response_ota_tvs = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get('https://api.themoviedb.org/3/tv/on_the_air', [
             'api_key' => env('TMDB_API_KEY'),  // Ambil dari .env
             'language' => 'en-US',
@@ -160,7 +160,7 @@ class TvController extends Controller
         
 
         $responseTvGenres = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get('https://api.themoviedb.org/3/genre/tv/list',[
             'api_key' => env('TMDB_API_KEY'),
         ]);

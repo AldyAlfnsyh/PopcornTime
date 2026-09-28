@@ -2,7 +2,7 @@
     
 
         @if(Str::contains(request()->path(), 'list-movie-tv') || Str::contains(request()->path(),'upcoming-movie') || Str::contains(request()->path(),'on-the-air-tv'))
-        <div class="mx-auto container flex gap-2 flex-col md:flex-row md:w-full md:justify-between">
+        <div class="mx-auto w-[90%] flex gap-2 flex-col md:flex-row md:w-full md:justify-between">
             <div class="flex flex-row gap-2 md:justify-between  md:w-full">
                 <a href="/" class=" p-1 flex items-center border-3 border-yellow-500 rounded-lg">
                     <h1 class="text-yellow-500 text-xl font-bold">PopcornTime</h1>
@@ -47,7 +47,7 @@
             </form>
         </div>
         @else
-        <div class="mx-auto container flex gap-2 flex-row">
+        <div class="mx-auto w-[90%] flex gap-2 flex-row">
 
             <a href="/" class=" p-1 flex items-center border-3 border-yellow-500 rounded-lg">
                 <h1 class="text-yellow-500 text-xl font-bold">PopcornTime</h1>

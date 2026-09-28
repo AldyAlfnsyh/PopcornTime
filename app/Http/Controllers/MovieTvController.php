@@ -13,14 +13,14 @@ class MovieTvController extends Controller
     public function index(){
 
         $trending_response = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get('https://api.themoviedb.org/3/trending/all/week',[
             'api_key' => env('TMDB_API_KEY')
         ]);
 
 
         $upcoming_movies_response = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get('https://api.themoviedb.org/3/movie/upcoming', [
             'api_key' => env('TMDB_API_KEY'),  // Ambil dari .env
             'language' => 'en-US',
@@ -31,7 +31,7 @@ class MovieTvController extends Controller
         ]);
 
         $ota_tvs_response = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get('https://api.themoviedb.org/3/tv/on_the_air', [
             'api_key' => env('TMDB_API_KEY'),  // Ambil dari .env
             'language' => 'en-US',
@@ -42,14 +42,14 @@ class MovieTvController extends Controller
         ]);
 
         $genres_response = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get('https://api.themoviedb.org/3/genre/movie/list',[
             'api_key' => env('TMDB_API_KEY'),
         ]);
         if($trending_response->successful() && $upcoming_movies_response->successful() && $ota_tvs_response->successful()  && $genres_response->successful()){
             $trendings = collect($trending_response->json()['results'])->take(10);
-            $upcoming_movies = collect($upcoming_movies_response->json()['results'])->take(5);
-            $ota_tvs = collect($ota_tvs_response->json()['results'])->take(5);
+            $upcoming_movies = collect($upcoming_movies_response->json()['results'])->take(10);
+            $ota_tvs = collect($ota_tvs_response->json()['results'])->take(10);
             $img_path='https://image.tmdb.org/t/p/w500';
             $genres = collect($genres_response->json()['genres'])->keyBy('id');
             return view('index',compact('upcoming_movies','ota_tvs','trendings','img_path','genres'));
@@ -81,13 +81,13 @@ class MovieTvController extends Controller
         }
 
         $responseMovie = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get("https://api.themoviedb.org/3/{$endpoint}/movie", array_merge([
             'api_key' => env('TMDB_API_KEY'),
         ], $params));
 
         $responseTvShow = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get("https://api.themoviedb.org/3/{$endpoint}/tv",array_merge([
             'api_key' => env('TMDB_API_KEY'),
         ], $params));
@@ -95,13 +95,13 @@ class MovieTvController extends Controller
         // dd($responseMovie->json());
 
         $responseMovieGenres = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get('https://api.themoviedb.org/3/genre/movie/list',[
             'api_key' => env('TMDB_API_KEY'),
         ]);
 
         $responseTvGenres = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get('https://api.themoviedb.org/3/genre/tv/list',[
             'api_key' => env('TMDB_API_KEY'),
         ]);
@@ -180,7 +180,7 @@ class MovieTvController extends Controller
         
         
         $responseMovie = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get('https://api.themoviedb.org/3/discover/movie', [
             'api_key' => env('TMDB_API_KEY'),  // Ambil dari .env
             'language' => 'en-US',
@@ -191,7 +191,7 @@ class MovieTvController extends Controller
             // 'include_video' => false,
         ]);
         $responseTvShow = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get('https://api.themoviedb.org/3/discover/tv',[
             'api_key' => env('TMDB_API_KEY'),
             'language' => 'en-US',
@@ -202,13 +202,13 @@ class MovieTvController extends Controller
         ]);
 
         $responseMovieGenres = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get('https://api.themoviedb.org/3/genre/movie/list',[
             'api_key' => env('TMDB_API_KEY'),
         ]);
 
         $responseTvGenres = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get('https://api.themoviedb.org/3/genre/tv/list',[
             'api_key' => env('TMDB_API_KEY'),
         ]);
@@ -281,22 +281,22 @@ class MovieTvController extends Controller
         $order = $request->query('order');
 
         $responseMovieGenres = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get('https://api.themoviedb.org/3/genre/movie/list',[
             'api_key' => env('TMDB_API_KEY'),
         ]);
 
         $responseTvGenres = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get('https://api.themoviedb.org/3/genre/tv/list',[
             'api_key' => env('TMDB_API_KEY'),
         ]);
         
         // Step 2: Ambil daftar film yang disutradarai
-        $movie_credits = Http::withOptions(['verify' => false])->get("https://api.themoviedb.org/3/person/{$id}/movie_credits", [
+        $movie_credits = Http::withOptions([ 'force_ip_resolve' => 'v4','verify' => false,])->get("https://api.themoviedb.org/3/person/{$id}/movie_credits", [
         'api_key' => env('TMDB_API_KEY'),
         ]);
-        $tv_credits = Http::withOptions(['verify' => false])->get("https://api.themoviedb.org/3/person/{$id}/tv_credits", [
+        $tv_credits = Http::withOptions([ 'force_ip_resolve' => 'v4','verify' => false,])->get("https://api.themoviedb.org/3/person/{$id}/tv_credits", [
             'api_key' => env('TMDB_API_KEY')
         ]);
 
@@ -368,22 +368,22 @@ class MovieTvController extends Controller
         $order = $request->query('order');
 
         $responseMovieGenres = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get('https://api.themoviedb.org/3/genre/movie/list',[
             'api_key' => env('TMDB_API_KEY'),
         ]);
 
         $responseTvGenres = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get('https://api.themoviedb.org/3/genre/tv/list',[
             'api_key' => env('TMDB_API_KEY'),
         ]);
 
         // Step 2: Ambil daftar film yang disutradarai
-        $movie_credits = Http::withOptions(['verify' => false])->get("https://api.themoviedb.org/3/person/{$id}/movie_credits", [
+        $movie_credits = Http::withOptions([ 'force_ip_resolve' => 'v4','verify' => false,])->get("https://api.themoviedb.org/3/person/{$id}/movie_credits", [
         'api_key' => env('TMDB_API_KEY'),
         ]);
-        $tv_credits = Http::withOptions(['verify' => false])->get("https://api.themoviedb.org/3/person/{$id}/tv_credits", [
+        $tv_credits = Http::withOptions([ 'force_ip_resolve' => 'v4','verify' => false,])->get("https://api.themoviedb.org/3/person/{$id}/tv_credits", [
             'api_key' => env('TMDB_API_KEY')
         ]);
 
@@ -446,22 +446,22 @@ class MovieTvController extends Controller
         $order = $request->query('order');
 
         $responseMovieGenres = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get('https://api.themoviedb.org/3/genre/movie/list',[
             'api_key' => env('TMDB_API_KEY'),
         ]);
 
         $responseTvGenres = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get('https://api.themoviedb.org/3/genre/tv/list',[
             'api_key' => env('TMDB_API_KEY'),
         ]);
         
         // Step 2: Ambil daftar film yang disutradarai
-        $movie_credits = Http::withOptions(['verify' => false])->get("https://api.themoviedb.org/3/person/{$id}/movie_credits", [
+        $movie_credits = Http::withOptions([ 'force_ip_resolve' => 'v4','verify' => false,])->get("https://api.themoviedb.org/3/person/{$id}/movie_credits", [
         'api_key' => env('TMDB_API_KEY'),
         ]);
-        $tv_credits = Http::withOptions(['verify' => false])->get("https://api.themoviedb.org/3/person/{$id}/tv_credits", [
+        $tv_credits = Http::withOptions([ 'force_ip_resolve' => 'v4','verify' => false,])->get("https://api.themoviedb.org/3/person/{$id}/tv_credits", [
             'api_key' => env('TMDB_API_KEY')
         ]);
 

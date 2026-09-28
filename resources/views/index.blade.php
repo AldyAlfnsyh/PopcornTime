@@ -3,7 +3,7 @@
     @php
       $currentIndex = 0;   
     @endphp
-  <div class="container  mx-auto mt-10 flex items-stretch gap-2">
+  <div class="  mx-auto w-[90%] mt-10 flex items-stretch gap-2">
     <div id="default-carousel" class="relative lg:w-7/10 w-full h-auto" data-carousel="slide">
       {{-- Carousel wrapper --}}
       <div class="relative h-[500px] overflow-hidden rounded-lg ">
@@ -59,7 +59,7 @@
   </div>
 
   {{-- Upcoming Movie --}}
-  <div class="container mx-auto mt-10">
+  <div class=" mx-auto w-[90%] mt-10">
     <div class="flex justify-between text-white font-bold text-2xl">
       <h1>Up Coming Movie</h1>
       <a href="/upcoming-movie" class="hover:text-yellow-500"><h1>view more</h1></a>
@@ -72,8 +72,8 @@
           <div class="swiper-slide ">
             <div class="rounded-lg shadow-xl bg-gray-700 flex-1 h-auto ">
             <a href="/movie/{{ $movie['id'] }}">
-                <div class="h-3/4">
-                  <img class='rounded-t-lg h-full w-full' src='{{isset($movie['poster_path']) ? asset($img_path.$movie['poster_path']) : asset('/storage/poster-not-found.png')}}'/>
+                <div class="h-[256px] md:h-[320px] lg:h-[384px] overflow-hidden rounded-t-lg">
+                  <img class='h-full w-full object-cover' src='{{isset($movie['poster_path']) ? asset($img_path.$movie['poster_path']) : asset('/storage/poster-not-found.png')}}'/>
                 </div>
             </a>
             <div class="p-2 text-white flex flex-col gap-1">
@@ -98,7 +98,7 @@
   </div>
 
   {{-- On the Air TV Series --}}
-  <div class="container mx-auto mt-10">
+  <div class=" mx-auto w-[90%] mt-10">
     <div class="flex justify-between text-white font-bold text-2xl">
       <h1>On The Air TV Series</h1>
       <a href="/on-the-air-tv" class="hover:text-yellow-500"><h1>view more</h1></a>
@@ -111,8 +111,8 @@
           <div class="swiper-slide">
             <div class="rounded-lg shadow-xl bg-gray-700 flex-1 h-auto">
               <a href="/tv/{{ $movie['id'] }}">
-                <div class="h-3/4">
-                  <img class='rounded-t-lg h-full w-full' src='{{isset($movie['poster_path']) ? asset($img_path.$movie['poster_path']) : asset('/storage/poster-not-found.png')}}'/>
+                <div class="h-[256px] md:h-[320px] lg:h-[384px] overflow-hidden rounded-t-lg">
+                  <img class='object-cover h-full w-full' src='{{isset($movie['poster_path']) ? asset($img_path.$movie['poster_path']) : asset('/storage/poster-not-found.png')}}'/>
                 </div>
               </a>
             <div class="p-2 text-white flex flex-col gap-1">

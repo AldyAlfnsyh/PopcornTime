@@ -1,5 +1,5 @@
 <footer class="  bg-slate-800 mt-10 py-10 ">
-    <div class="mx-auto container flex md:flex-row md:justify-between gap-5 md:gap-0 flex-col-reverse items-center md:items-start">
+    <div class="mx-auto w-[90%] flex md:flex-row md:justify-between gap-5 md:gap-0 flex-col-reverse items-center md:items-start">
 
             <div class="flex flex-col gap-1  items-center md:items-start">
                 <a href="/" class="p-1 flex items-center border-3 border-yellow-500 rounded-lg h-fit w-fit ">

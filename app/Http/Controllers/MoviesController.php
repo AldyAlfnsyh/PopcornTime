@@ -11,7 +11,9 @@ class MoviesController extends Controller
     public function list_movie(Request $request){
         $page = $request->query('page',1);
         $response = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4',
+             'verify' => false,
+
         ])->get('https://api.themoviedb.org/3/discover/movie', [
             'api_key' => env('TMDB_API_KEY'),  // Ambil dari .env
             'language' => 'en-US',
@@ -22,7 +24,7 @@ class MoviesController extends Controller
         ]);
 
         $genresResponse = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get('https://api.themoviedb.org/3/genre/movie/list',[
             'api_key' => env('TMDB_API_KEY'),
         ]);
@@ -42,27 +44,27 @@ class MoviesController extends Controller
 
     public function movie_detail($id){
         $response_movie = Http::withOptions([
-            'verify' =>false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])-> get("https://api.themoviedb.org/3/movie/{$id}",[
             'api_key' => env('TMDB_API_KEY'),
         ]);
         $response_videos = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get("https://api.themoviedb.org/3/movie/{$id}/videos",[
             'api_key' => env('TMDB_API_KEY'),
         ]);
         $genresResponse = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get('https://api.themoviedb.org/3/genre/movie/list',[
             'api_key' => env('TMDB_API_KEY'),
         ]);
         $creditsResponse = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get("https://api.themoviedb.org/3/movie/{$id}/credits",[
             'api_key' => env('TMDB_API_KEY'),
         ]);
         $recomendationsResponse = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get("https://api.themoviedb.org/3/movie/{$id}/recommendations",[
             'api_key' => env('TMDB_API_KEY'),
         ]);
@@ -123,7 +125,7 @@ class MoviesController extends Controller
         $order = $request->query('order');
         
         $response_upcoming_movies = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get('https://api.themoviedb.org/3/movie/upcoming', [
             'api_key' => env('TMDB_API_KEY'),  // Ambil dari .env
             'language' => 'en-US',
@@ -135,7 +137,7 @@ class MoviesController extends Controller
         
 
         $responseMovieGenres = Http::withOptions([
-            'verify' => false,
+             'force_ip_resolve' => 'v4','verify' => false,
         ])->get('https://api.themoviedb.org/3/genre/movie/list',[
             'api_key' => env('TMDB_API_KEY'),
         ]);

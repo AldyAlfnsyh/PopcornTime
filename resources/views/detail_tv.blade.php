@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="container mx-auto mt-10 text-white flex flex-col gap-5">
+    <div class=" mx-auto w-[90%] mt-10 text-white flex flex-col gap-5">
         <div class="flex flex-col-reverse md:flex-col">
         <div class="flex md:justify-between md:flex-row flex-col">
             <div class="flex flex-col">
@@ -18,7 +18,7 @@
                     <div class="flex gap-1 items-center h-auto">
                         <img class='md:w-8 md:h-8 w-6 h-6' src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1"/>    
                         <div class="flex flex-col w-auto">
-                            <h1 class="text-gray-400"><span class="text-gray-400 md:text-2xl text-xl font-bold">{{round($tv['vote_average'],1)}}/</span>10</h1>
+                            <h1 class="text-gray-400"><span class="text-gray-400 md:text-2xl text-xl font-bold">{{round($tv['vote_average'],1)}}</span>/10</h1>
                             <h1 class="text-gray-400 hidden md:block">{{$tv['vote_count']}}</h1>
                         </div>
                     </div>
@@ -83,8 +83,9 @@
                     <div class="swiper-slide">
                         <div class="rounded-lg shadow-xl bg-gray-700 flex-1 h-auto">
                     <a href='/tv/{{$recomendation['id']}}'>
-                    <img class='rounded-t-lg h-3/4 w-full' src='{{isset($recomendation['poster_path']) ? asset($img_path.$recomendation['poster_path']) : asset("storage/poster-not-found.png")}}'/>
-                    </a>
+                        <div class="h-[256px] md:h-[320px] lg:h-[384px] overflow-hidden rounded-t-lg "> <img class='h-full w-full object-cover' src='{{isset($recomendation['poster_path']) ? asset($img_path.$recomendation['poster_path']) : asset("storage/poster-not-found.png")}}'/>
+                    </div>
+                   </a>
                     <div class="p-2 text-white flex flex-col gap-1">
                         <div class="flex gap-1 items-center">
                             <img class='w-5 h-5' src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1"/>
