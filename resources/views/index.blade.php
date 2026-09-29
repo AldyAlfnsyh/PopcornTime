@@ -73,7 +73,7 @@
             <div class="rounded-lg shadow-xl bg-gray-700 flex-1 h-auto ">
             <a href="/movie/{{ $movie['id'] }}">
                 <div class="h-[256px] md:h-[320px] lg:h-[384px] overflow-hidden rounded-t-lg">
-                  <img class='h-full w-full object-cover' src='{{isset($movie['poster_path']) ? asset($img_path.$movie['poster_path']) : asset('/storage/poster-not-found.png')}}'/>
+                  <img class='h-full w-full object-cover' src='{{isset($movie['poster_path']) ? $img_path.$movie['poster_path'] : asset('images/poster-not-found.png')}}'/>
                 </div>
             </a>
             <div class="p-2 text-white flex flex-col gap-1">
@@ -112,7 +112,7 @@
             <div class="rounded-lg shadow-xl bg-gray-700 flex-1 h-auto">
               <a href="/tv/{{ $movie['id'] }}">
                 <div class="h-[256px] md:h-[320px] lg:h-[384px] overflow-hidden rounded-t-lg">
-                  <img class='object-cover h-full w-full' src='{{isset($movie['poster_path']) ? asset($img_path.$movie['poster_path']) : asset('/storage/poster-not-found.png')}}'/>
+                  <img class='object-cover h-full w-full' src='{{isset($movie['poster_path']) ? $img_path.$movie['poster_path'] : asset('images/poster-not-found.png')}}'/>
                 </div>
               </a>
             <div class="p-2 text-white flex flex-col gap-1">

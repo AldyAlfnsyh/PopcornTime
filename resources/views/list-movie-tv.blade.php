@@ -6,7 +6,7 @@
         <div class="rounded-lg shadow-xl bg-gray-700 md:w-[15.25rem] md:h-[32rem] w-[11.25rem] h-[24rem]">
             <a href="/{{ $movie['type'] == 'tv' ? 'tv' : 'movie' }}/{{ $movie['id'] }}">
                 <div class="h-[256px] md:h-[320px] lg:h-[384px] overflow-hidden rounded-t-lg ">
-                    <img class='object-cover h-full w-full' src='{{$movie['poster_path'] ? asset($poster_path.$movie['poster_path']) : asset('/storage/poster-not-found.png')}}'/>
+                    <img class='object-cover h-full w-full' src='{{$movie['poster_path'] ? $poster_path.$movie['poster_path'] : asset('images/poster-not-found.png')}}'/>
                 </div>
             </a>
             <div class="p-2 text-white flex flex-col gap-1">

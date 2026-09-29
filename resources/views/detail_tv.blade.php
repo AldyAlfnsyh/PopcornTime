@@ -35,7 +35,7 @@
         
 
         <div class="flex md:h-120 md:gap-1 md:justify-center">
-            <img class='hidden md:block rounded-xl h-auto w-auto' src='{{isset($tv['poster_path']) ? asset($img_path.$tv['poster_path']) : asset('storage/poster-not-found.png')}}'/>
+            <img class='hidden md:block rounded-xl h-auto w-auto' src='{{isset($tv['poster_path']) ? $img_path.$tv['poster_path'] : asset('images/poster-not-found.png')}}'/>
 
             @if(count($trailers))
             <iframe width="100%" height="100%" class="rounded-xl h-80 md:h-auto" src="https://www.youtube.com/embed/{{ $trailers[0]['key'] }}" frameborder="0" allowfullscreen>
@@ -83,7 +83,7 @@
                     <div class="swiper-slide">
                         <div class="rounded-lg shadow-xl bg-gray-700 flex-1 h-auto">
                     <a href='/tv/{{$recomendation['id']}}'>
-                        <div class="h-[256px] md:h-[320px] lg:h-[384px] overflow-hidden rounded-t-lg "> <img class='h-full w-full object-cover' src='{{isset($recomendation['poster_path']) ? asset($img_path.$recomendation['poster_path']) : asset("storage/poster-not-found.png")}}'/>
+                        <div class="h-[256px] md:h-[320px] lg:h-[384px] overflow-hidden rounded-t-lg "> <img class='h-full w-full object-cover' src='{{isset($recomendation['poster_path']) ? $img_path.$recomendation['poster_path'] : asset("images/poster-not-found.png")}}'/>
                     </div>
                    </a>
                     <div class="p-2 text-white flex flex-col gap-1">

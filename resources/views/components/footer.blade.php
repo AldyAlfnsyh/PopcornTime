@@ -19,7 +19,7 @@
 
             <div class=" flex gap-2 text-white items-center md:items-start">
                 <a href="https://www.themoviedb.org/">
-                    <img src="/storage/TMDB.svg" class="h-auto w-24">
+                    <img src="{{ asset('images/TMDB.svg') }}" class="h-auto w-24">
                 </a>
                 <p class="w-50">This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
             </div>

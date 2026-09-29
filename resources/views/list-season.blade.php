@@ -1,7 +1,7 @@
 <x-layout>
     <div class="h-30  w-screen bg-slate-700">
         <div class=" mx-auto w-[90%] flex h-full">
-            <img class='rounded-xl h-auto w-auto p-2' src='{{isset($poster_path) ? asset($img_path.$poster_path) : '/storage/poster-not-found.png'}}'/>
+            <img class='rounded-xl h-auto w-auto p-2' src='{{isset($poster_path) ? $img_path.$poster_path : asset('images/poster-not-found.png')}}'/>
             <div class="flex flex-col justify-end p-2  ">
                 <h1 class="text-2xl  text-slate-300">{{$title}}</h1>
                 <h1 class="text-4xl text-white font-bold">{{$type_group}} List</h1>
@@ -16,7 +16,7 @@
                     @if( isset($data['poster_path'])  || isset($data['still_path'] ))
                     <img class='rounded-xl h-auto w-2/5 md:w-1/5 p-2 object-cover' src='{{asset($img_path. ($data['poster_path'] ?? $data['still_path']))}}'/>
                     @else
-                    <img class='rounded-xl md:h-60 w-2/5 md:w-1/5 p-2 object-cover' src='{{isset($data['episode_number']) ? asset('/storage/still-image-not-found.jpg') : asset('/storage/poster-not-found.png')}}'/>
+                    <img class='rounded-xl md:h-60 w-2/5 md:w-1/5 p-2 object-cover' src='{{isset($data['episode_number']) ? asset('images/still-image-not-found.jpg') : asset('images/poster-not-found.png')}}'/>
                     @endif
                     <div class="flex flex-col justify-start w-3/5 md:w-4/5 py-2">
                         @if(isset($data['episode_number']))

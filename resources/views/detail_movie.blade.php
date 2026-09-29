@@ -39,9 +39,9 @@
 
         <div class="flex md:h-120 md:gap-1 md:justify-center ">
             @if(isset($type) && $type=='episode_detail')
-                <img class=' rounded-xl h-auto w-full md:h-full md:w-auto' src='{{isset($still_path) ? asset($img_path.$still_path) : asset("storage/still-image-not-found.jpg")}}'/>
+                <img class=' rounded-xl h-auto w-full md:h-full md:w-auto' src='{{isset($still_path) ? $img_path.$still_path : asset("images/still-image-not-found.jpg")}}'/>
             @else
-                <img class='hidden md:block rounded-xl h-auto w-auto' src='{{isset($poster_path) ? asset($img_path.$poster_path) : asset("storage/poster-not-found.png")}}'/>
+                <img class='hidden md:block rounded-xl h-auto w-auto' src='{{isset($poster_path) ? $img_path.$poster_path : asset("images/poster-not-found.png")}}'/>
             @endif
 
 
@@ -122,7 +122,7 @@
                         <div class="flex flex-col flex-1 h-auto items-center justify-center text-center">
                             <div class="h-[256px] md:h-[320px] lg:h-[384px] overflow-hidden rounded-full">
 
-                                <img class="h-full w-full object-cover" src="{{isset($cast['profile_path']) ? asset($img_path.$cast['profile_path']) : asset('storage/profile-not-found.jpg')}}" >
+                                <img class="h-full w-full object-cover" src="{{isset($cast['profile_path']) ? $img_path.$cast['profile_path'] : asset('images/profile-not-found.jpg')}}" >
                             </div>
                             <div class="h-1/4">
                             <a href="/cast/{{$cast['id']}}/list-movie-tv" ><h1>{{$cast['name']}}</h1></a>
@@ -155,7 +155,7 @@
                             <a href='/movie/{{$recomendation['id']}}'>
                                 <div class="h-[256px] md:h-[320px] lg:h-[384px] overflow-hidden rounded-t-lg">
 
-                                    <img class='object-cover h-full w-full' src='{{isset($recomendation['poster_path']) ? asset($img_path.$recomendation['poster_path']) : asset("storage/poster-not-found.png")}}'/>
+                                    <img class='object-cover h-full w-full' src='{{isset($recomendation['poster_path']) ? $img_path.$recomendation['poster_path'] : asset("images/poster-not-found.png")}}'/>
                                     
                                 </div>
                             </a>
