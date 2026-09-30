@@ -1,6 +1,6 @@
 <x-layout>
 
-    <div class="mx-auto w-[90%]  mt-5 flex flex-wrap items-center gap-3 justify-center">
+    <div class="mx-auto md:w-[95%]  mt-5 flex flex-wrap items-center gap-2 md:gap-3 justify-center">
         @foreach ($movies as $movie)
     
         <div class="rounded-lg shadow-xl bg-gray-700 md:w-[15.25rem] md:h-[32rem] w-[11.25rem] h-[24rem]">

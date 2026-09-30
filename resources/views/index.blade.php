@@ -60,7 +60,7 @@
 
   {{-- Upcoming Movie --}}
   <div class=" mx-auto w-[90%] mt-10">
-    <div class="flex justify-between text-white font-bold text-2xl">
+    <div class="flex justify-between text-white font-bold text-xl sm:text-2xl">
       <h1>Up Coming Movie</h1>
       <a href="/upcoming-movie" class="hover:text-yellow-500"><h1>view more</h1></a>
     </div>
@@ -82,7 +82,7 @@
                     <span class="text-gray-400">{{round($movie['vote_average'],1)}}</span>
                 </div>
                 <a href="/movie/{{ $movie['id'] }}">
-                <h1 class="font-bold  text-xl line-clamp-2 min-h-[3.5rem]">{{Str::limit($movie['title'] ?? $movie['name'],60)}}</h1>
+                <h1 class="font-bold text-base md:text-xl line-clamp-2 min-h-[3.5rem]">{{Str::limit($movie['title'] ?? $movie['name'],60)}}</h1>
                 </a>
             </div>
         </div>
@@ -99,7 +99,7 @@
 
   {{-- On the Air TV Series --}}
   <div class=" mx-auto w-[90%] mt-10">
-    <div class="flex justify-between text-white font-bold text-2xl">
+    <div class="flex justify-between text-white font-bold text-xl sm:text-2xl">
       <h1>On The Air TV Series</h1>
       <a href="/on-the-air-tv" class="hover:text-yellow-500"><h1>view more</h1></a>
     </div>
@@ -121,7 +121,7 @@
                 <span class="text-gray-400">{{round($movie['vote_average'],1)}}</span>
               </div>
               <a href="/tv/{{ $movie['id'] }}">
-                <h1 class="font-bold text-xl line-clamp-2 min-h-[3.5rem]">{{Str::limit($movie['title'] ?? $movie['name'],60)}}</h1>
+                <h1 class="font-bold text-base md:text-xl line-clamp-2 min-h-[3.5rem]">{{Str::limit($movie['title'] ?? $movie['name'],60)}}</h1>
               </a>
             </div>
           </div>

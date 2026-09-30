@@ -2,8 +2,8 @@
     
 
         @if(Str::contains(request()->path(), 'list-movie-tv') || Str::contains(request()->path(),'upcoming-movie') || Str::contains(request()->path(),'on-the-air-tv'))
-        <div class="mx-auto w-[90%] flex gap-2 flex-col md:flex-row md:w-full md:justify-between">
-            <div class="flex flex-row gap-2 md:justify-between  md:w-full">
+        <div class="mx-auto  flex gap-2 flex-col md:w-[90%] md:flex-row  md:justify-between">
+            <div class="flex flex-wrap gap-2 md:justify-between  md:w-full sm:!flex-nowrap">
                 <a href="/" class=" p-1 flex items-center border-3 border-yellow-500 rounded-lg">
                     <h1 class="text-yellow-500 text-xl font-bold">PopcornTime</h1>
                 </a>    
@@ -12,7 +12,7 @@
                         <div class="bg-slate-100 p-0 rounded-lg w-full "><input class='w-full px-4 py-2 rounded-lg focus:outline-none bg-white' type="search" name="query" placeholder="search..."></div>
                 </form>
             </div>
-            <form method="GET" class="text-white flex items-center gap-4 justify-end">
+            <form method="GET" class="text-white flex items-center gap-2 justify-end flex-wrap md:!flex-nowrap md:gap-4">
                 {{-- Sort Field --}}
                 <div >
                     {{-- <label for="sort_field" class="mr-2">Sort by:</label> --}}

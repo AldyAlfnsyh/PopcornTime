@@ -36,7 +36,8 @@
       prevEl: '.swiper-button-prev',
     },
     breakpoints: {
-      200: { slidesPerView: 3 },
+      200: { slidesPerView: 2 },
+      500: {slidesPerView:3},
       768: { slidesPerView: 4 },
       1024: { slidesPerView: 5 },
     }
